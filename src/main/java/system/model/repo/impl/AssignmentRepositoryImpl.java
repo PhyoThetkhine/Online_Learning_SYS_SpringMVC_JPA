@@ -54,7 +54,7 @@ public class AssignmentRepositoryImpl implements AssignmentRepository {
     @Override
     @Transactional
     public List<Assignment> findAssignmentsByCourseId(Integer courseId) {
-        String jpql = "SELECT a FROM Assignment a WHERE a.course.id = :courseId";
+        String jpql = "SELECT a FROM Assignment a WHERE a.course.id = :courseId AND a.status = 'ACTIVE'";
         TypedQuery<Assignment> query = entityManager.createQuery(jpql, Assignment.class);
         query.setParameter("courseId", courseId);
         return query.getResultList();

@@ -80,18 +80,30 @@ public class TeacherController {
 				return "redirect:/";
 			}
 	        CourseDTO course = courseService.findById(courseId);
-	        List<CourseHasStudentDTO> enrolledStudents = courseHasStudentService.findActiveStudentByCourse(courseId);
-	        List<CourseHasTeacherDTO> assignedTeachers = courseHasTeacherService.findAssignedTeacherByCourse(courseId);
 	        List<AssignmentDTO> assignments = AssignmentService.findAssignmentsByCourseId(courseId);
 	        List<MaterialDTO> materials = materialService.findMaterialsByCourseId(courseId);
 	        model.addAttribute("loginuser", userDTO);
 	        model.addAttribute("course", course);
-	        model.addAttribute("enrolledStudents", enrolledStudents);
-	        model.addAttribute("assignedTeachers", assignedTeachers);
 	        model.addAttribute("assignments", assignments);
 	        model.addAttribute("materials", materials);
 	        return "teacherCourseDetail"; 
 	    }
+	 @GetMapping("teacherCoursePeople")
+	 public String showPeople(@RequestParam("courseId") int courseId,Model model,HttpSession session) {
+		 UserDTO userDTO = (UserDTO) session.getAttribute("teacher");
+			if(userDTO == null) {
+				System.out.println("session is null");
+				return "redirect:/";
+			}
+			 CourseDTO course = courseService.findById(courseId);
+		        List<CourseHasStudentDTO> enrolledStudents = courseHasStudentService.findActiveStudentByCourse(courseId);
+		        List<CourseHasTeacherDTO> assignedTeachers = courseHasTeacherService.findAssignedTeacherByCourse(courseId);
+		        model.addAttribute("course", course);
+		        model.addAttribute("enrolledStudents", enrolledStudents);
+		        model.addAttribute("assignedTeachers", assignedTeachers);
+		        model.addAttribute("loginuser", userDTO);
+				return "teacherCoursePeople";
+	 }
 	 @GetMapping("/classWork/{courseId}")
 	 public String classWork(@PathVariable("courseId")Integer courseID,HttpSession session,Model model) {
 		 UserDTO userDTO = (UserDTO) session.getAttribute("teacher");
@@ -154,7 +166,7 @@ public class TeacherController {
 			 assignmentDTO.setCreateTeacherID(userDTO.getId());
 		     assignmentDTO.setCourseID(courseId);
 		     AssignmentService.save(assignmentDTO);
-		     return "redirect:/Teacher/teacherAssignment/" + courseId;
+		     return "redirect:/Teacher/teacherCourseDetails?courseId=" + courseId;
 		 }
 		 
 	 @PostMapping("/createMaterial")
@@ -171,7 +183,7 @@ public class TeacherController {
 			materialDTO.setCreateTeacherID(userDTO.getId());
 			materialDTO.setFiles(files);
 			materialService.save(materialDTO);
-			return "redirect:/Teacher/classWork/" + courseId;
+			return "redirect:/Teacher/teacherCourseDetails?courseId=" + courseId;
 	 }
 
 	 
@@ -188,6 +200,28 @@ public class TeacherController {
 			model.addAttribute("material", material);
 			return "teacherMaterialDetail";
 	 }
+	 
+	 @PostMapping("/deleteMaterial/{materialId}")
+	 public String delecteMaterial(@PathVariable("materialId")Integer materialID,HttpSession session,@RequestParam("courseId") Integer courseId) {
+		 UserDTO userDTO = (UserDTO) session.getAttribute("teacher");
+			if(userDTO == null) {
+				System.out.println("session is null");
+				return "redirect:/";
+			}
+			materialService.delete(materialID);
+			return "redirect:/Teacher/teacherCourseDetails?courseId=" + courseId;
+	 }
+	 @PostMapping("/deleteAssignment/{assignmentId}")
+	 public String delecteAssignment(@PathVariable("assignmentId")Integer assignmentId,HttpSession session,@RequestParam("courseId") Integer courseId) {
+		 UserDTO userDTO = (UserDTO) session.getAttribute("teacher");
+			if(userDTO == null) {
+				System.out.println("session is null");
+				return "redirect:/";
+			}
+			AssignmentService.delete(assignmentId);
+			return "redirect:/Teacher/teacherCourseDetails?courseId=" + courseId;
+	 }
+	 
 	 
 	 
 

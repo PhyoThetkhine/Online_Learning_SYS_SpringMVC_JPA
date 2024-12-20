@@ -87,8 +87,9 @@ public class MaterialServiceImpl implements MaterialService{
 
 	@Override
 	public void delete(Integer id) {
-		// TODO Auto-generated method stub
-		
+		Material material = materialRepository.findById(id);
+		material.setStatus(Material.Status.DROP);
+		 materialRepository.update(material);
 	}
 
 	@Override

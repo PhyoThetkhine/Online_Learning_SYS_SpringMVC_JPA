@@ -103,7 +103,9 @@ public class AssignmentServiceImpl implements AssignmentService {
 
     @Override
     public void delete(Integer id) {
-        assignmentRepository.delete(id);
+    	 Assignment assignment = assignmentRepository.findById(id);
+    	 assignment.setStatus(Assignment.Status.DROP);
+        assignmentRepository.update(assignment);
     }
 
     @Override

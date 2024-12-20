@@ -22,6 +22,10 @@ public class Material {
     @ManyToOne
     @JoinColumn(name = "course_id", nullable = false)
     private Course course;
+    
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status", nullable = false)
+    private Status status;
 
     @ManyToOne
     @JoinColumn(name = "create_teacher_id", nullable = false)
@@ -33,7 +37,16 @@ public class Material {
     @Column(name = "update_date", nullable = false)
     private Date updateDate;
     
-    @PrePersist
+    
+    public Status getStatus() {
+		return status;
+	}
+
+	public void setStatus(Status status) {
+		this.status = status;
+	}
+
+	@PrePersist
     public void prePersist() {
     	if (this.createDate == null) {
             this.createDate = new Date(System.currentTimeMillis());
@@ -41,6 +54,13 @@ public class Material {
         if (this.updateDate == null) {
             this.updateDate = new Date(System.currentTimeMillis());
         }
+        if (this.status == null) {
+            this.status = Status.ACTIVE; // Default value
+        }
+    }
+    
+    public enum Status {
+        ACTIVE, DROP
     }
 
 	public Integer getId() {

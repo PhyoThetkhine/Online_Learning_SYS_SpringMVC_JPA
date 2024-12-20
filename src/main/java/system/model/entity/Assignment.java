@@ -63,7 +63,7 @@ public class Assignment {
     }
     
     public enum Status {
-        ACTIVE, COMPLETED
+        ACTIVE, COMPLETED, DROP
     }
 
 	public Integer getId() {

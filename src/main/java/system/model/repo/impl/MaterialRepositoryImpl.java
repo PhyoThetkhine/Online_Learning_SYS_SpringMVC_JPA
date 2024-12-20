@@ -49,10 +49,10 @@ public class MaterialRepositoryImpl implements MaterialRepository {
 	        }
 	    }
 
-		@Override
-		@Transactional
+	    @Override
+	    @Transactional
 	    public List<Material> findMaterialsByCourseId(Integer courseId) {
-	        String jpql = "SELECT m FROM Material m WHERE m.course.id = :courseId";
+	        String jpql = "SELECT m FROM Material m WHERE m.course.id = :courseId AND m.status = 'ACTIVE'";
 	        TypedQuery<Material> query = entityManager.createQuery(jpql, Material.class);
 	        query.setParameter("courseId", courseId);
 	        return query.getResultList();
