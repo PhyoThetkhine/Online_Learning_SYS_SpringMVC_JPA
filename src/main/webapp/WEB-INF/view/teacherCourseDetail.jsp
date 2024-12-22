@@ -141,32 +141,21 @@
     </style>
 </head>
 <body>
-    <!-- Sidebar -->
-    <div class="sidebar">
-        <h2><i class="fas fa-user-shield"></i> Teacher Dashboard</h2>
-        <ul>
-            <li>
-                <a href="/Learing_management/TeacherHomeServlet">
-                    <i class="fas fa-tachometer-alt"></i> Dashboard
-                </a>
-            </li>
-            <li>
-                <a href="/LearingSYSLMS/Teacher/classWork/${course.id}">
-                    <i class="fas fa-chalkboard-teacher"></i> Class Work
-                </a>
-            </li>
-            <li>
-                <a href="/LearingSYSLMS/Teacher/assignments/${course.id}">
-                    <i class="fas fa-book"></i> Assignment
-                </a>
-            </li>
-            <li>
-                <a href="/Learing_management/Logout">
-                    <i class="fas fa-sign-out-alt"></i> Logout
-                </a>
-            </li>
-        </ul>
-    </div>
+      <div class="sidebar">
+    <h2><i class="fas fa-user-shield"></i> Teacher Dashboard</h2>
+    <ul>
+        <li>
+            <a href="/LearingSYSLMS/Teacher/home">
+                <i class="fas fa-tachometer-alt"></i> Dashboard
+            </a>
+        </li>
+		<li>
+			<a href="/LearingSYSLMS/logout">
+				<i class="fas fa-sign-out-alt"></i> Logout
+			</a>
+		</li>
+    </ul>
+</div>
      <!-- Navigation Bar -->
         <nav class="navbar navbar-expand-lg">
             <div class="container-fluid">
@@ -175,11 +164,6 @@
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="/LearingSYSLMS/Teacher/teacherCourseDetails?courseId=${course.id}">
                                 <i class="fas fa-stream"></i> Stream
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/Learning_management/StudentClassWorkServlet?courseId=${course.id}">
-                                <i class="fas fa-chalkboard-teacher"></i> Class Work
                             </a>
                         </li>
                         <li class="nav-item">
@@ -264,7 +248,7 @@
                                 <p class="material-meta">By ${assignments.createTeacher.name}</p>
                             </div>
                             <div class="material-actions">
-							    <a href="/LearingSYSLMS/Teacher/materialDetail/${material.id}" class="btn btn-primary">
+							    <a href="/LearingSYSLMS/Teacher/assignmentDetail/${assignments.id}" class="btn btn-primary">
 							        <i class="fas fa-eye"></i> View
 							    </a>
 							    <form action="/LearingSYSLMS/Teacher/deleteAssignment/${assignments.id}" method="POST" style="display:inline;">

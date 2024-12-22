@@ -2,6 +2,7 @@ package system.model.repo;
 
 import java.util.List;
 
+import system.model.entity.Course;
 import system.model.entity.CourseHasStudent;
 
 public interface CourseHasStudentRepository {
@@ -11,5 +12,6 @@ public interface CourseHasStudentRepository {
 	 public CourseHasStudent findById(CourseHasStudent.CourseHasStudentPK id);
 	 public void deleteById(CourseHasStudent.CourseHasStudentPK id);
 	 public void reEnrollById(CourseHasStudent.CourseHasStudentPK id);
+	 public List<Course> findCoursesByStudentId(Integer studentID);
 
 }

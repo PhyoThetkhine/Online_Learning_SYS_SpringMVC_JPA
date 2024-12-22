@@ -123,7 +123,7 @@
     <h2><i class="fas fa-user-graduate"></i> Student Dashboard</h2>
     <ul>
         <li>
-            <a href="/Learing_management/StudentHomeServlet">
+            <a href="/LearingSYSLMS/Student/home">
                 <i class="fas fa-tachometer-alt"></i> My Course
             </a>
         </li>
@@ -133,7 +133,7 @@
     </a>
 </li>
 		<li>
-			<a href="/Learing_management/Logout">
+			<a href="/LearingSYSLMS/logout">
 				<i class="fas fa-sign-out-alt"></i> Logout
 			</a>
 		</li>
@@ -187,7 +187,7 @@
                 <h5 class="modal-title" id="changePasswordModalLabel">Change Password</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="StudentChangePasswordServlet" method="POST">
+            <form action="changePassword" method="POST">
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="currentPassword" class="form-label">Current Password</label>

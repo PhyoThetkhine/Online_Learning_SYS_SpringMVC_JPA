@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import system.model.entity.Course;
+import system.model.repo.CourseHasStudentRepository;
 import system.model.repo.CourseHasTeacherRepository;
 import system.model.repo.CourseRepository;
 
@@ -20,6 +21,9 @@ public class CourseRepositoryImpl implements CourseRepository {
 	
 	@Autowired
 	private CourseHasTeacherRepository courseHasTeacherRepository;
+	
+	@Autowired
+	private CourseHasStudentRepository courseHasStudentRepository;
 
 
 	@Override
@@ -60,6 +64,12 @@ public class CourseRepositoryImpl implements CourseRepository {
 	@Override
 	public List<Course> findCoursesByTeacherId(Integer teacherId) {
 		 return courseHasTeacherRepository.findCoursesByTeacherId(teacherId);
+	}
+
+	@Override
+	@Transactional
+	public List<Course> findCoursesByStudentId(Integer studentId) {
+		 return courseHasStudentRepository.findCoursesByStudentId(studentId);
 	}
 
 }

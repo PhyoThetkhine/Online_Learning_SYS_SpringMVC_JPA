@@ -12,5 +12,6 @@ public interface CourseService {
 	 public void update(CourseDTO course);
 	 public void delete(CourseDTO id);
 	 public List<CourseDTO> findCoursesByTeacherId(Integer teacherId);
+	 List<CourseDTO> findCoursesByStudentId(Integer studentId);
 
 }

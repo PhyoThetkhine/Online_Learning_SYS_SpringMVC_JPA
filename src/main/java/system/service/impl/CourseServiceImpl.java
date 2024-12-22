@@ -84,4 +84,12 @@ public class CourseServiceImpl implements CourseService {
                 .map(courseMapper::toDTO)
                 .collect(Collectors.toList());
 	}
+
+	@Override
+	public List<CourseDTO> findCoursesByStudentId(Integer studentId) {
+		List<Course> courses =courseRepository.findCoursesByStudentId(studentId);
+		return courses.stream()
+                .map(courseMapper::toDTO)
+                .collect(Collectors.toList());
+	}
 }

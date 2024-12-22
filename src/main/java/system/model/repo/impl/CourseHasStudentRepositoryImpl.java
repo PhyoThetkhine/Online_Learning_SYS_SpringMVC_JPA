@@ -9,6 +9,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
 
+import system.model.entity.Course;
 import system.model.entity.CourseHasStudent;
 import system.model.entity.CourseHasStudent.CourseHasStudentPK;
 import system.model.repo.CourseHasStudentRepository;
@@ -71,6 +72,14 @@ public class CourseHasStudentRepositoryImpl implements CourseHasStudentRepositor
         	 entity.setStatus(CourseHasStudent.Status.ACTIVE); 
              entityManager.merge(entity);
         }
+	}
+
+	@Override
+	public List<Course> findCoursesByStudentId(Integer studentID) {
+		String jpql = "SELECT cst.course FROM CourseHasStudent cst WHERE cst.student.id = :studentId";
+	    TypedQuery<Course> query = entityManager.createQuery(jpql, Course.class);
+	    query.setParameter("studentId", studentID);
+	    return query.getResultList();
 	}
 
 	

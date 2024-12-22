@@ -124,7 +124,7 @@
     <h2><i class="fas fa-user-shield"></i> Teacher Dashboard</h2>
     <ul>
         <li>
-            <a href="/Learing_management/TeacherHomeServlet">
+            <a href="/LearingSYSLMS/Teacher/home">
                 <i class="fas fa-tachometer-alt"></i> Dashboard
             </a>
         </li>
@@ -134,7 +134,7 @@
     </a>
 </li>
 		<li>
-			<a href="/Learing_management/Logout">
+			<a href="/LearingSYSLMS/logout">
 				<i class="fas fa-sign-out-alt"></i> Logout
 			</a>
 		</li>
@@ -186,7 +186,7 @@
                 <h5 class="modal-title" id="changePasswordModalLabel">Change Password</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="TeacherChangePasswordServlet" method="POST">
+            <form action="changePassword" method="POST">
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="currentPassword" class="form-label">Current Password</label>
@@ -221,7 +221,3 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-
-<h4><i class="fas fa-file-alt"></i> Materials</h4>
-<h4><i class="fas fa-tasks"></i> Assignments</h4>
-

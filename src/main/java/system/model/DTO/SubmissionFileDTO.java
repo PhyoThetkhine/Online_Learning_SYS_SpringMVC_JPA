@@ -1,6 +1,10 @@
 package system.model.DTO;
 
 
+import java.util.List;
+
+import org.springframework.web.multipart.MultipartFile;
+
 import system.model.entity.Submission;
 
 public class SubmissionFileDTO {
@@ -9,6 +13,13 @@ public class SubmissionFileDTO {
 	    private String fileUrl;
 	    private Submission submission;
 	    private Integer submissionID;
+	    private List<MultipartFile> files;
+		public List<MultipartFile> getFiles() {
+			return files;
+		}
+		public void setFiles(List<MultipartFile> files) {
+			this.files = files;
+		}
 		public Integer getId() {
 			return id;
 		}

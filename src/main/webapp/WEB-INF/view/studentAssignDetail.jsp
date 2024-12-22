@@ -1,22 +1,26 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Material Details</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            display: flex;
-        }
-        /* Sidebar Styles */
-        .sidebar {
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Assignment Details</title>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+	rel="stylesheet">
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+	rel="stylesheet">
+<style>
+body {
+	margin: 0;
+	font-family: Arial, sans-serif;
+	display: flex;
+}
+
+.sidebar {
             width: 250px;
-            background-color: #8b5e3c;
+            background-color: #42627F;
             color: white;
             height: 100vh;
             padding: 20px 0;
@@ -56,7 +60,8 @@
             margin-right: 10px;
             font-size: 1.2em;
         }
-         /* Navbar Styles */
+
+  /* Navbar Styles */
         .navbar {
             position: fixed;
              background-color: #ecf0f1;
@@ -80,40 +85,7 @@
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             border-radius: 5px;
         }
-        .course-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-        .course-box {
-            background-color: #f8f9fa;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            width: 300px;
-            padding: 15px;
-            text-align: center;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-        .course-box h3 {
-            font-size: 1.5em;
-            margin-bottom: 10px;
-        }
-        .course-box p {
-            font-size: 0.9em;
-            color: #666;
-            margin-bottom: 15px;
-        }
-        .course-box .btn {
-            background-color: #007bff;
-            color: white;
-            text-decoration: none;
-            padding: 10px 15px;
-            border-radius: 5px;
-        }
-        .course-box .btn:hover {
-            background-color: #0056b3;
-        }
-        .modal-fullscreen .modal-body {
+.modal-fullscreen .modal-body {
         padding: 0; /* Remove padding for a truly fullscreen experience */
     }
     #filePreview {
@@ -173,36 +145,54 @@
     vertical-align: middle; /* Align icon properly */
     margin-right: 0.3em; /* Reduce space between the icon and the text */
 }
-    </style>
+.no-files {
+    text-align: center;
+    color: #888;
+    font-size: 16px;
+    margin: 20px 0;
+}
+.button-container {
+    display: flex;           /* Use flexbox to align the buttons */
+    justify-content: flex-start; /* Align buttons to the left */
+    gap: 10px;               /* Space between buttons */
+}
+
+/* Button styling */
+.upload-btn {
+    width: auto;             /* Let the button width adjust to the content */
+    max-width: 200px;        /* Limit the max width */
+    padding: 8px 16px;       /* Optional: Adjust padding for better appearance */
+    font-size: 14px;         /* Optional: Adjust font size */
+}
+</style>
 </head>
 <body>
-<div class="sidebar">
-    <h2><i class="fas fa-user-shield"></i> Teacher Dashboard</h2>
+	<div class="sidebar">
+    <h2><i class="fas fa-user-graduate"></i> Student Dashboard</h2>
     <ul>
         <li>
-            <a href="/LearingSYSLMS/Teacher/home">
-                <i class="fas fa-tachometer-alt"></i> Dashboard
+            <a href="/LearingSYSLMS/Student/home">
+                <i class="fas fa-tachometer-alt"></i> My Course
             </a>
         </li>
-		<li>
+    <li>
 			<a href="/LearingSYSLMS/logout">
 				<i class="fas fa-sign-out-alt"></i> Logout
 			</a>
 		</li>
     </ul>
 </div>
-<!-- Navigation Bar -->
-        <nav class="navbar navbar-expand-lg">
+<nav class="navbar navbar-expand-lg">
             <div class="container-fluid">
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/LearingSYSLMS/Teacher/teacherCourseDetails?courseId=${material.course.id}">
+                            <a class="nav-link active" aria-current="page" href="/LearingSYSLMS/Student/studentCourseDeatail?courseId=${assignment.course.id}">
                                 <i class="fas fa-stream"></i> Stream
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/LearingSYSLMS/Teacher/teacherCoursePeople?courseId=${material.course.id}">
+                            <a class="nav-link" href="/LearingSYSLMS/Student/studentCoursePeople?courseId=${assignment.course.id}">
                                 <i class="fas fa-users"></i> People
                             </a>
                         </li>
@@ -212,24 +202,26 @@
         </nav>
 
 
-    <div class="main-content">
-        <div class="header">
-            <h1><i class="fas fa-file-alt"></i> Material Details</h1>
-        </div>
-         <!-- Material Info -->
-        <div class="card">
+	<!-- Main Content -->
+	<div class="main-content">
+		   <div class="card">
             <div class="card-body">
-                <h3><i class="fas fa-file-alt"></i> Material Title: ${material.title}</h3>
-                <p><strong>Description:</strong> ${material.description}</p>
-                <p><strong>Teacher:</strong> ${material.createTeacher.name}</p>
+                <h3><i class="fas fa-file-alt"></i> Assignment Title: ${assignment.title}</h3>
+                <p><strong>Description:</strong> ${assignment.description}</p>
+                <p><strong>Teacher:</strong> ${assignment.createTeacher.name}</p>
             </div>
         </div>
         <br>
-        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#courseModal">Add New File</button>
-        <br><br>
-         <section id="materials">
+         <br>
+             <h4><i class="fas fa-file-alt"></i> Assignment Files</h4>
+        <section id="materials">
             <div class="container">
                 <div class="material-container">
+                 <c:if test="${empty Files}">
+                <div class="no-files">
+                    <p>No files available.</p>
+                </div>
+            </c:if>
                    <c:forEach var="file" items="${Files}">
 					    <div class="material-box">
 					        <div class="material-content">
@@ -245,7 +237,7 @@
 					            <button class="btn btn-secondary" onclick="viewFile('${file.fileUrl}')">
 					                <i class="fas fa-eye"></i> View File
 					            </button>
-					            <a href="/LearingSYSLMS/Teacher/downloadMaterialFile?fileId=${file.id}" class="btn btn-primary">
+					            <a href="/LearingSYSLMS/Teacher/downloadAssignmentFile?fileId=${file.id}" class="btn btn-primary">
 					                <i class="fas fa-download"></i> Download
 					            </a>
 					        </div>
@@ -254,29 +246,92 @@
                 </div>
             </div>
         </section>
-           <div class="modal fade" id="courseModal" tabindex="-1" aria-labelledby="courseModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="courseModalLabel">Add New File</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <br><br>
+   <h4><i class="fas fa-tasks"></i> Your Submission</h4>
+          <section id="materials">
+            <div class="container">
+                <div class="material-container">
+                <div class="button-container">
+     <c:if test="${empty submission}">
+    <button type="button" class="btn btn-primary btn-sm upload-btn" data-bs-toggle="modal" data-bs-target="#uploadModal">
+        <i class="fas fa-file-upload"></i> Upload Assignment
+    </button>
+    </c:if>
+
+</div>
+                    <c:forEach var="submission" items="${submission}">
+                        <div class="material-box">
+                            <i class="fas fa-book-open"></i>
+                            <div class="material-content">
+                            <h5>Your Submission</h5>
+                            </div>
+                            <div class="material-actions">
+                             <a href="/LearingSYSLMS/Student/submissioinDetail?submissionID=${submission.id}" class="btn btn-secondary">
+					                 <i class="fas fa-eye"></i> View Detail
+					            </a>
+							</div>
+                        </div>
+                    </c:forEach>
                 </div>
-                <form action="/LearingSYSLMS/Teacher/addingNewMaterailFile" method="POST" enctype="multipart/form-data">
-                    
-                      <div class="mb-3">
-                        <label for="file" class="form-label">Upload File</label>
-                        <input type="file" class="form-control" id="file" name="files" multiple required>
+            </div>
+        </section> 
+
+		
+		<!-- Modal for Upload Form -->
+<div class="modal fade" id="uploadModal" tabindex="-1" aria-labelledby="uploadModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="uploadModalLabel">Upload Files</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Upload Form -->
+                <form action="/LearingSYSLMS/Student/submitAssign" method="post" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <label for="fileUpload" class="form-label"><i class="fas fa-file-upload"></i> Select Files</label>
+                        <input type="file" class="form-control" id="fileUpload" name="files" multiple required>
                     </div>
-                    <input type="hidden" name="materialId" value="${material.id}">
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Upload</button>
-                    </div>
+                    <input type="hidden" name="assignmentId" value="${assignment.id}">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-paper-plane"></i> Submit
+                    </button>
                 </form>
             </div>
         </div>
     </div>
-   <div class="modal fade" id="fileModal" tabindex="-1" aria-labelledby="fileModalLabel" aria-hidden="true">
+</div>
+
+<!-- Modal for Upload Form -->
+<div class="modal fade" id="NewUploadModal" tabindex="-1" aria-labelledby="NewUploadModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="uploadModalLabel">Upload Files</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Upload Form -->
+                <form action="submitNewFileAssign" method="post" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <label for="fileUpload" class="form-label"><i class="fas fa-file-upload"></i> Select Files</label>
+                        <input type="file" class="form-control" id="fileUpload" name="files" multiple required>
+                    </div>
+                    <input type="hidden" name="assignmentId" value="${assingments.id}">
+                    <c:forEach var="file" items="${file}">
+                    <input type="hidden" name="submissionId" value="${file.submission.id}">
+                    </c:forEach>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-paper-plane"></i> Submit
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+	</div>
+	 <div class="modal fade" id="fileModal" tabindex="-1" aria-labelledby="fileModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-fullscreen">
         <div class="modal-content">
             <div class="modal-header">
@@ -289,12 +344,8 @@
         </div>
     </div>
 </div>
-        
-       
-
-    </div>
-    
-    <script>
+	
+	<script>
     function viewFile(fileUrl) {
         const filePreview = document.getElementById('filePreview');
 
@@ -321,8 +372,9 @@
     }
 
 </script>
-    
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

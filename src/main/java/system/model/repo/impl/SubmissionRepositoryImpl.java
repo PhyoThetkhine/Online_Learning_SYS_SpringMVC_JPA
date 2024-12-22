@@ -68,4 +68,13 @@ public class SubmissionRepositoryImpl implements SubmissionRepository {
         query.setParameter("studentId", studentId);
         return query.getResultList();
     }
+    @Override
+    @Transactional
+    public List<Submission> getSubmissionByAssignmentIdAndStudentId(Integer assignmentId, Integer studentId) {
+        String jpql = "SELECT s FROM Submission s WHERE s.assignment.id = :assignmentId AND s.createStudent.id = :studentId";
+        TypedQuery<Submission> query = entityManager.createQuery(jpql, Submission.class);
+        query.setParameter("assignmentId", assignmentId);
+        query.setParameter("studentId", studentId);
+        return query.getResultList();
+    }
 }

@@ -15,6 +15,7 @@ public class SubmissionMapper {
 	        dto.setCreateDate(entity.getCreateDate());
 	        dto.setUpdateDate(entity.getUpdateDate());
 	        dto.setCreateStudent(entity.getCreateStudent());
+	        dto.setCreateStudentName(entity.getCreateStudent().getName());
 	        return dto;
 	    }
 	    

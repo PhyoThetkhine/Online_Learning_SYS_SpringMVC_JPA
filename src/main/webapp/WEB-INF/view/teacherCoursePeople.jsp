@@ -117,18 +117,12 @@ body {
     <h2><i class="fas fa-user-shield"></i> Teacher Dashboard</h2>
     <ul>
         <li>
-            <a href="/Learing_management/TeacherHomeServlet">
+            <a href="/LearingSYSLMS/Teacher/home">
                 <i class="fas fa-tachometer-alt"></i> Dashboard
             </a>
         </li>
-        <li>
-            <a href="/LearingSYSLMS/Teacher/classWork?courseId=${course.id}">
-                <i class="fas fa-chalkboard-teacher"></i>  Class Work
-            </a>
-        </li>
-         <li><a href="/Learing_management/Assignment?courseId=${course.id}"><i class="fas fa-book"></i>Assignment</a></li>
-         <li>
-			<a href="/Learing_management/Logout">
+		<li>
+			<a href="/LearingSYSLMS/logout">
 				<i class="fas fa-sign-out-alt"></i> Logout
 			</a>
 		</li>
@@ -141,11 +135,6 @@ body {
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="/LearingSYSLMS/Teacher/teacherCourseDetails?courseId=${course.id}">
                                 <i class="fas fa-stream"></i> Stream
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/Learning_management/StudentClassWorkServlet?courseId=${course.id}">
-                                <i class="fas fa-chalkboard-teacher"></i> Class Work
                             </a>
                         </li>
                         <li class="nav-item">

@@ -11,6 +11,7 @@ public interface CourseRepository {
 	 public void update(Course course);
 	 public void delete(Integer id);
 	 List<Course> findCoursesByTeacherId(Integer teacherId);
+	  List<Course> findCoursesByStudentId(Integer studentId); // Add this method
 	
 	 
 }

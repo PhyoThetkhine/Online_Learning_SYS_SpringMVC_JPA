@@ -107,4 +107,12 @@ public class SubmissionServiceImpl implements SubmissionService {
                 .map(submissionMapper::toDTO)
                 .collect(Collectors.toList());
     }
+
+	@Override
+	public List<SubmissionDTO> getSubmissionByAssignmentIdAndStudentId(Integer assignmentId, Integer studentId) {
+		List<Submission> submissions = submissionRepository.getSubmissionByAssignmentIdAndStudentId(assignmentId,studentId);
+        return submissions.stream()
+                .map(submissionMapper::toDTO)
+                .collect(Collectors.toList());
+	}
 }

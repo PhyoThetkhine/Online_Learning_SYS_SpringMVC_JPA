@@ -39,8 +39,20 @@ public class LoginController {
 	        		session.setAttribute("teacher", userDTO);
 	        		return "redirect:/Teacher/home";
 	        	}
+	        	if("Student".equals(userDTO.getRoleName())) {
+	        		session.setAttribute("student", userDTO);
+	        		return "redirect:/Student/home";
+	        	}
 	        }
 			return "login";
+	    }
+	    @GetMapping("/logout")
+	    public String logout(HttpSession session) {
+	        // Invalidate the current session
+	        session.invalidate();
+
+	        // Redirect to the login page or home page
+	        return "redirect:/";
 	    }
 	    
 

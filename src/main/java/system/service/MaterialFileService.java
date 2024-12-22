@@ -12,4 +12,5 @@ public interface MaterialFileService {
 	 public List<MaterialFileDTO> getAllMaterialFiles();
 	 public void deleteMaterialFile(Integer id);
 	 public List<MaterialFileDTO> getFilesByMaterialId(Integer materialId);
+	 public void addnewFile(MaterialFileDTO dto);
 }

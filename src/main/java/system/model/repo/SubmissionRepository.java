@@ -12,5 +12,6 @@ public interface SubmissionRepository {
 	public void delete(Integer id) ;
 	 public List<Submission> findByAssignmentId(Integer assignmentId);
 	 public List<Submission> findByStudentId(Integer studentId);
+	 List<Submission> getSubmissionByAssignmentIdAndStudentId(Integer assignmentId,Integer studentId);
 
 }

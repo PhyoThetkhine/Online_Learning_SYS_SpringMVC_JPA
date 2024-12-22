@@ -34,15 +34,17 @@ public class CloudinaryServiceImpl implements CloudinaryService {
 	    Map uploadResult = null;
 	    try {
 	        String fileName = file.getOriginalFilename();
+	        String fileBaseName = fileName.substring(0, fileName.lastIndexOf('.'));
 	        String fileExtension = fileName.substring(fileName.lastIndexOf('.') + 1);
+
 	        uploadResult = cloudinary.uploader().upload(file.getBytes(), ObjectUtils.asMap(
 	                "resource_type", "raw",
+	                "public_id", "user_files/" + fileBaseName, // Custom folder and name
 	                "format", fileExtension
 	        ));
 	    } catch (IOException e) {
 	        e.printStackTrace();
 	    }
-	    String fileUrl = (String) uploadResult.get("secure_url");
-	    return fileUrl;
+	    return uploadResult != null ? (String) uploadResult.get("secure_url") : null;
 	}
 }

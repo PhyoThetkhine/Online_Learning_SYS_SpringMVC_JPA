@@ -2,6 +2,7 @@ package system.model.entity;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.Objects;
 
 import javax.persistence.*;
 
@@ -129,5 +130,26 @@ public class CourseHasStudent {
 
         // Getters and Setters, equals() and hashCode() methods
     }
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(course, createAdmin, createDate, id, status, student, updateDate);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		CourseHasStudent other = (CourseHasStudent) obj;
+		return Objects.equals(course, other.course) && Objects.equals(createAdmin, other.createAdmin)
+				&& Objects.equals(createDate, other.createDate) && Objects.equals(id, other.id)
+				&& status == other.status && Objects.equals(student, other.student)
+				&& Objects.equals(updateDate, other.updateDate);
+	}
+	
 }
 

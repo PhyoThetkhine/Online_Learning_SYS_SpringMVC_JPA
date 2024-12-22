@@ -46,6 +46,7 @@ public class UserServiceImpl implements UserService{
         }
     }
 	
+	
 	@Override
 	public UserDTO login(String email, String password) {
 		User existingUser = userRepository.findUserByEmail(email);
@@ -142,6 +143,19 @@ public class UserServiceImpl implements UserService{
 	         userRepository.update(existingUser); 
 	     }
 	 }
+
+	 @Override
+	    @Transactional
+	    public boolean changePassword(Integer userId, String currentPassword, String newPassword) {
+	        User existingUser = userRepository.findById(userId);
+	        if (existingUser != null && bCryptEncoder.match(currentPassword, existingUser.getPassword())) {
+	            String hashedNewPassword = bCryptEncoder.encode(newPassword);
+	            existingUser.setPassword(hashedNewPassword);
+	            userRepository.update(existingUser);
+	            return true;
+	        }
+	        return false;
+	    }
 	
 	
 }

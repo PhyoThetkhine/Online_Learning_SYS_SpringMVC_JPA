@@ -200,53 +200,38 @@
             </div>
         </div>
    
-             <br>
-        <h4><i class="fas fa-file-alt"></i> Materials</h4>
-        <section id="materials">
-            <div class="container">
-                <div class="material-container">
-                    <c:forEach var="material" items="${materials}">
-                        <div class="material-box">
-                           <i class="fas fa-file-alt"></i>
-                            <div class="material-content">
-                                <p class="material-title">${material.title}</p>
-                                 <p class="material-meta">By ${material.createTeacher.name}</p>
-                            </div>
-                            <div class="material-actions">
-							    <a href="/LearingSYSLMS/Student/materialDetail/${material.id}" class="btn btn-primary">
-							        <i class="fas fa-eye"></i> View
-							    </a>
-							</div>
-                        </div>
-                    </c:forEach>
-                </div>
-            </div>
-        </section>
-<br><br>
-        <h4><i class="fas fa-tasks"></i> Assignments</h4>
-          <section id="materials">
-            <div class="container">
-                <div class="material-container">
-                    <c:forEach var="assignments" items="${assignments}">
-                        <div class="material-box">
-                            <i class="fas fa-book-open"></i>
-                            <div class="material-content">
-                                <p class="material-title">${assignments.title}</p>
-                                <p class="material-meta">By ${assignments.createTeacher.name}</p>
-                            </div>
-                            <div class="material-actions">
-							    <a href="/LearingSYSLMS/Student/assignmentDetail/${assignments.id}" class="btn btn-primary">
-							        <i class="fas fa-eye"></i> View
-							    </a>
-							</div>
-                        </div>
-                    </c:forEach>
-                </div>
-            </div>
-        </section>
-         </div>
-    
+        <!-- Assigned Teachers -->
+        <h3 class="mt-4"><i class="fas fa-users"></i>Teachers</h3>
+        <ul class="list-group">
+            <c:forEach var="assignedTeacher" items="${assignedTeachers}">
+                <li class="list-group-item">
+                    <div style="display: flex; align-items: center;">
+                        <i class="fas fa-user"></i>
+                        <span style="margin-left: 10px;">${assignedTeacher.teacher.name}
+                        
+                        </span>
+                    </div>
+                </li>
+            </c:forEach>
+        </ul>
 
+        <!-- Enrolled Students -->
+        <h3 class="mt-4"><i class="fas fa-user-graduate"></i>Students</h3>
+        <ul class="list-group">
+            <c:forEach var="enrolledStudent" items="${enrolledStudents}">
+                <li class="list-group-item">
+                    <div style="display: flex; align-items: center;">
+                        <i class="fas fa-user"></i>
+                        <span style="margin-left: 10px;">${enrolledStudent.student.name}
+                        <c:if test="${enrolledStudent.student.id == loginuser.id}">
+                        <span style="color: green;">(You)</span>
+                    </c:if></span>
+                    </div>
+                </li>
+            </c:forEach>
+        </ul>
+    </div>
+    	        <!-- Button to Trigger Modal -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

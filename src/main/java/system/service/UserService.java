@@ -17,5 +17,6 @@ public interface UserService {
 	 public UserDTO login(String email,String password);
 	 public List<UserDTO> findStudentsNotEnrolledInCourse(Integer courseId);
 	 public List<UserDTO> findTeachersNotAssignedToCourse(Integer courseId);
+	 public boolean changePassword(Integer userId, String currentPassword, String newPassword);
 	 
 }
