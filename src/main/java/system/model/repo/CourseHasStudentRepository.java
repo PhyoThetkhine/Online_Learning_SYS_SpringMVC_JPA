@@ -13,5 +13,6 @@ public interface CourseHasStudentRepository {
 	 public void deleteById(CourseHasStudent.CourseHasStudentPK id);
 	 public void reEnrollById(CourseHasStudent.CourseHasStudentPK id);
 	 public List<Course> findCoursesByStudentId(Integer studentID);
+	 public List<CourseHasStudent> getAll();
 
 }

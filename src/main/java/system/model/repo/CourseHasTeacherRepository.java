@@ -14,5 +14,6 @@ public interface CourseHasTeacherRepository {
 	 public void deleteById(CourseHasTeacher.CourseHasTeacherPK id);
 	 public void reEnrollById(CourseHasTeacherPK id);
 	 public List<Course> findCoursesByTeacherId(Integer teacherId);
+	 public List<CourseHasTeacher> findAll();
 
 }

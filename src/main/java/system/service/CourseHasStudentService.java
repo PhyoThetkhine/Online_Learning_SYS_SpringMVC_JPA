@@ -12,5 +12,6 @@ public interface CourseHasStudentService {
 	 public void saveCourseHasStudent(CourseHasStudentDTO dto) ;
 	 public void deleteCourseHasStudent(CourseHasStudent.CourseHasStudentPK id);
 	 public void reEnrollCourseHasStudent(CourseHasStudent.CourseHasStudentPK id);
+	 public List<CourseHasStudentDTO> getAll() ;
 	 
 }

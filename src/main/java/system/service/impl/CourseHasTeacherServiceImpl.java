@@ -74,5 +74,12 @@ public class CourseHasTeacherServiceImpl implements CourseHasTeacherService {
                 .map(courseHasTeacherMapper::toDTO)
                 .collect(Collectors.toList());
 	}
+	@Override
+	public List<CourseHasTeacherDTO> getAll() {
+	    List<CourseHasTeacher> entities = courseHasTeacherRepository.findAll();
+	    return entities.stream()
+	                   .map(courseHasTeacherMapper::toDTO)
+	                   .collect(Collectors.toList());
+	}
 
 }

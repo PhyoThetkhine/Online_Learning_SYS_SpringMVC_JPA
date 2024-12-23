@@ -70,6 +70,13 @@ public class CourseHasStudentServiceImpl implements CourseHasStudentService{
 	public void reEnrollCourseHasStudent(CourseHasStudentPK id) {
 		courseHasStudentRepository.reEnrollById(id);
 	}
+	@Override
+	public List<CourseHasStudentDTO> getAll() {
+	    List<CourseHasStudent> entities = courseHasStudentRepository.getAll();
+	    return entities.stream()
+	                   .map(courseHasStudentMapper::toDTO)
+	                   .collect(Collectors.toList());
+	}
 
 	
 

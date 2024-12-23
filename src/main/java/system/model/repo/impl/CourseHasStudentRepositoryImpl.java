@@ -82,6 +82,13 @@ public class CourseHasStudentRepositoryImpl implements CourseHasStudentRepositor
 	    return query.getResultList();
 	}
 
+	@Override
+	@Transactional
+	public List<CourseHasStudent> getAll() {
+	    String jpql = "SELECT chs FROM CourseHasStudent chs";
+	    TypedQuery<CourseHasStudent> query = entityManager.createQuery(jpql, CourseHasStudent.class);
+	    return query.getResultList();
+	}
 	
 
 }

@@ -47,6 +47,13 @@ public class CourseHasTeacherRepositoryImpl implements CourseHasTeacherRepositor
         }
 		
 	}
+	@Override
+	@Transactional
+	public List<CourseHasTeacher> findAll() {
+	    String jpql = "SELECT cht FROM CourseHasTeacher cht";
+	    TypedQuery<CourseHasTeacher> query = entityManager.createQuery(jpql, CourseHasTeacher.class);
+	    return query.getResultList();
+	}
 
 	@Override
 	 @Transactional

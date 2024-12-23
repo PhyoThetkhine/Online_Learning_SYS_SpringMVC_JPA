@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,14 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
 
 import system.model.DTO.RoleDTO;
 import system.model.DTO.UserDTO;
@@ -72,6 +81,137 @@ public class AdminController {
 		model.addAttribute("courseList", courses);
 		model.addAttribute("CourseDTO",new CourseDTO());
 		return "adminHome";
+	}
+	@PostMapping("ExportStudentEnrollment")
+    public void exportEnrollmentListToPdf(HttpServletResponse response) throws IOException {
+        response.setContentType("application/pdf");
+        response.setHeader("Content-Disposition", "attachment; filename=StudentEnrollList.pdf");
+
+        try {
+            Document document = new Document();
+            PdfWriter.getInstance(document, response.getOutputStream());
+            document.open();
+
+            // Title
+            Font titleFont = new Font(Font.FontFamily.HELVETICA, 20, Font.BOLD);
+            Paragraph title = new Paragraph("Student Enrollment List", titleFont);
+            title.setAlignment(Element.ALIGN_CENTER);
+            document.add(title);
+            document.add(new Paragraph("\n"));
+
+            // Table
+            PdfPTable table = new PdfPTable(5); // Adjusted to match columns
+            table.setWidthPercentage(100);
+            table.setWidths(new float[]{2, 4, 4, 4, 3});
+
+            Font headerFont = new Font(Font.FontFamily.HELVETICA, 12, Font.BOLD);
+            table.addCell(new PdfPCell(new Paragraph("No.", headerFont)));
+            table.addCell(new PdfPCell(new Paragraph("Student Name", headerFont)));
+            table.addCell(new PdfPCell(new Paragraph("Course", headerFont)));
+            table.addCell(new PdfPCell(new Paragraph("Create Admin", headerFont)));
+            table.addCell(new PdfPCell(new Paragraph("Status", headerFont)));
+
+            List<CourseHasStudentDTO> studentsWithCourses = courseHasStudentService.getAll();
+            for (int i = 0; i < studentsWithCourses.size(); i++) {
+                CourseHasStudentDTO dto = studentsWithCourses.get(i);
+                table.addCell(String.valueOf(i + 1)); // No.
+                table.addCell(dto.getStudent().getName()); // Student Name
+                table.addCell(dto.getCourse().getTitle()); // Course
+                table.addCell(dto.getCreateAdminName()); // Admin Name
+                table.addCell(dto.getStatus()); // Status
+            }
+
+            document.add(table);
+            document.close();
+        } catch (DocumentException e) {
+            e.printStackTrace();
+        }
+    }
+	@PostMapping("ExportTeacherEnrollment")
+    public void exportTeacherEnrollmentListToPdf(HttpServletResponse response) throws IOException {
+        response.setContentType("application/pdf");
+        response.setHeader("Content-Disposition", "attachment; filename=TeacherEnrollList.pdf");
+
+        try {
+            Document document = new Document();
+            PdfWriter.getInstance(document, response.getOutputStream());
+            document.open();
+
+            // Title
+            Font titleFont = new Font(Font.FontFamily.HELVETICA, 20, Font.BOLD);
+            Paragraph title = new Paragraph("Teacher Enrollment List", titleFont);
+            title.setAlignment(Element.ALIGN_CENTER);
+            document.add(title);
+            document.add(new Paragraph("\n"));
+
+            // Table
+            PdfPTable table = new PdfPTable(5); // Adjusted to match columns
+            table.setWidthPercentage(100);
+            table.setWidths(new float[]{2, 4, 4, 4, 3});
+
+            Font headerFont = new Font(Font.FontFamily.HELVETICA, 12, Font.BOLD);
+            table.addCell(new PdfPCell(new Paragraph("No.", headerFont)));
+            table.addCell(new PdfPCell(new Paragraph("Teacher Name", headerFont)));
+            table.addCell(new PdfPCell(new Paragraph("Course", headerFont)));
+            table.addCell(new PdfPCell(new Paragraph("Create Admin", headerFont)));
+            table.addCell(new PdfPCell(new Paragraph("Status", headerFont)));
+
+            List<CourseHasTeacherDTO> teachersWithCourses = courseHasTeacherService.getAll();
+            for (int i = 0; i < teachersWithCourses.size(); i++) {
+            	CourseHasTeacherDTO dto = teachersWithCourses.get(i);
+                table.addCell(String.valueOf(i + 1)); // No.
+                table.addCell(dto.getTeacher().getName()); // Student Name
+                table.addCell(dto.getCourse().getTitle()); // Course
+                table.addCell(dto.getCreateAdminName()); // Admin Name
+                table.addCell(dto.getStatus()); // Status
+            }
+
+            document.add(table);
+            document.close();
+        } catch (DocumentException e) {
+            e.printStackTrace();
+        }
+    }
+	@GetMapping("/StudentEntrollment")
+    public String getStudentEnrollments(Model model,HttpSession session) {
+		UserDTO userDTO = (UserDTO) session.getAttribute("admin");
+		if(userDTO == null) {
+			System.out.println("session is null");
+			return "redirect:/";
+		}
+            List<CourseHasStudentDTO> studentsEntrollList = courseHasStudentService.getAll();
+            model.addAttribute("studentsEntrollList", studentsEntrollList);
+       
+        return "adminStudentEntrollMent"; // Ensure this corresponds to your JSP file name
+    }
+	@GetMapping("/TeacherEntrollment")
+    public String TeacherEntrollment(Model model,HttpSession session) {
+		UserDTO userDTO = (UserDTO) session.getAttribute("admin");
+		if(userDTO == null) {
+			System.out.println("session is null");
+			return "redirect:/";
+		}
+            List<CourseHasTeacherDTO> TeachersEntrollList = courseHasTeacherService.getAll();
+            model.addAttribute("TeachersEntrollList", TeachersEntrollList);
+       
+        return "adminTeacherEnrollMent"; 
+    }
+	@PostMapping("/changePassword")
+	public String changePassword( @RequestParam("currentPassword") String currentPassword,
+	                             @RequestParam("newPassword") String newPassword,
+	                             Model model,HttpSession session) {
+		UserDTO userDTO = (UserDTO) session.getAttribute("admin");
+		if(userDTO == null) {
+			System.out.println("session is null");
+			return "redirect:/";
+		}
+	    boolean isChanged = userService.changePassword(userDTO.getId(), currentPassword, newPassword);
+	    if (isChanged) {
+	        model.addAttribute("message", "Password changed successfully.");
+	    } else {
+	        model.addAttribute("error", "Current password is incorrect.");
+	    }
+	    return "redirect:/Student/home"; 
 	}
 	
 	@PostMapping("/createCourse")

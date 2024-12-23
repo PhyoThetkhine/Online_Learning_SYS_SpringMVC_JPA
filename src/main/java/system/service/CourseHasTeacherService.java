@@ -12,6 +12,7 @@ public interface CourseHasTeacherService {
 	 public void saveCourseHasTeacher(CourseHasTeacherDTO dto) ;
 	 public void deleteCourseHasTeacher(CourseHasTeacher.CourseHasTeacherPK id);
 	 public void reEnrollCourseHasTeacher(CourseHasTeacher.CourseHasTeacherPK id);
+	 public List<CourseHasTeacherDTO> getAll() ;
 	 
 	 
 }

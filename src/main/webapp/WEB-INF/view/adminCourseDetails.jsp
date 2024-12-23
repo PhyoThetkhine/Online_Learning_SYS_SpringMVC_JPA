@@ -127,36 +127,37 @@
     </style>
 </head>
 <body>
-    <div class="sidebar">
+    
+	<div class="sidebar">
 		<h2>
 			<i class="fas fa-user-shield"></i> Admin Dashboard
 		</h2>
 		<ul>
-			<li><a href="/Learing_management/AdminDashboard"> <i
+			<li><a href="/LearingSYSLMS/Admin/home"> <i
 					class="fas fa-tachometer-alt"></i> Dashboard
 			</a></li>
 			<li>
-            <a href="/Learing_management/TeacherList">
+            <a href="/LearingSYSLMS/Admin/TeacherList">
                 <i class="fas fa-chalkboard-teacher"></i>  Teacher Management
             </a>
         </li>
         <li>
-            <a href="/Learing_management/StudentListAdminServlet">
+            <a href="/LearingSYSLMS/Admin/StudentList">
                 <i class="fas fa-user-graduate"></i>  Student Management
             </a>
         </li>
-         <li>
-            <a href="/Learing_management/EntrollmentServlet">
+          <li>
+            <a href="/LearingSYSLMS/Admin/StudentEntrollment">
                 <i class="fas fa-users"></i>  Student Enrollment List
             </a>
         </li>
         <li>
-            <a href="/Learing_management/TeacherEntrollmentServlet">
+            <a href="/LearingSYSLMS/Admin/TeacherEntrollment">
                 <i class="fas fa-users"></i>  Teacher Enrollment List
             </a>
         </li>
-        <li>
-			<a href="/Learing_management/Logout">
+		<li>
+			<a href="/LearingSYSLMS/logout">
 				<i class="fas fa-sign-out-alt"></i> Logout
 			</a>
 		</li>

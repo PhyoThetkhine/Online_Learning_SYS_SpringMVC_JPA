@@ -147,26 +147,26 @@ body {
 			<i class="fas fa-user-shield"></i> Admin Dashboard
 		</h2>
 		<ul>
-			<li><a href="/Learing_management/AdminDashboard"> <i
+			<li><a href="/LearingSYSLMS/Admin/home"> <i
 					class="fas fa-tachometer-alt"></i> Dashboard
 			</a></li>
 			<li>
-            <a href="/Learing_management/TeacherList">
+            <a href="/LearingSYSLMS/Admin/TeacherList">
                 <i class="fas fa-chalkboard-teacher"></i>  Teacher Management
             </a>
         </li>
         <li>
-            <a href="/Learing_management/StudentListAdminServlet">
+            <a href="/LearingSYSLMS/Admin/StudentList">
                 <i class="fas fa-user-graduate"></i>  Student Management
             </a>
         </li>
           <li>
-            <a href="/Learing_management/EntrollmentServlet">
+            <a href="/LearingSYSLMS/Admin/StudentEntrollment">
                 <i class="fas fa-users"></i>  Student Enrollment List
             </a>
         </li>
         <li>
-            <a href="/Learing_management/TeacherEntrollmentServlet">
+            <a href="/LearingSYSLMS/Admin/TeacherEntrollment">
                 <i class="fas fa-users"></i>  Teacher Enrollment List
             </a>
         </li>
@@ -176,7 +176,7 @@ body {
     </a>
 </li>
 		<li>
-			<a href="/Learing_management/Logout">
+			<a href="/LearingSYSLMS/logout">
 				<i class="fas fa-sign-out-alt"></i> Logout
 			</a>
 		</li>
@@ -277,7 +277,7 @@ body {
                 <h5 class="modal-title" id="changePasswordModalLabel">Change Password</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="AdminChangePasswordServlet" method="POST">
+            <form action="changePassword" method="POST">
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="currentPassword" class="form-label">Current Password</label>
