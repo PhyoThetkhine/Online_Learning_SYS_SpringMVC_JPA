@@ -31,6 +31,11 @@ public class LoginController {
 	                        Model model,HttpSession session) {
 	        UserDTO userDTO = userService.login(email, password);
 	        if (userDTO != null) {
+	        	if ("TERMINATE".equals(userDTO.getStatus())) {
+	                model.addAttribute("error", "Your account has been terminated.");
+	                return "login";
+	            }
+
 	        	if ("SuperAdmin".equals(userDTO.getRoleName())) {
 	        		session.setAttribute("admin", userDTO);
 	        		return "redirect:/Admin/home";
