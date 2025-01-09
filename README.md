@@ -1,7 +1,7 @@
 # Online Learning System - Spring MVC & JPA
 
 Welcome to the Online Learning System repository! This project is designed for learner who are learning to build web applications using Spring MVC and JPA (Java Persistence API). It serves as a simple yet comprehensive example of how to create a basic online learning platform where users can manage courses, enroll in classes, and track their progress.
-Honestly, the code was writing using chatGPT. :)
+But, honestly the code was writing using chatGPT. :)
 
 ## Features
 
