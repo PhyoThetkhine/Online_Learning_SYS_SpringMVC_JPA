@@ -35,8 +35,8 @@ public class SpringConfig {
         JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
         mailSender.setHost("smtp.gmail.com");
         mailSender.setPort(587);
-        mailSender.setUsername("otpsend206@gmail.com");
-        mailSender.setPassword("jpdcimqenojezvnz");
+        mailSender.setUsername("yourotpsendemail@gmail.com");
+        mailSender.setPassword("your-app-password");
         Properties props = new Properties();
         props.put("mail.transport.protocol", "smtp");
         props.put("mail.smtp.auth", "true");
@@ -48,9 +48,9 @@ public class SpringConfig {
     @Bean
     public Cloudinary cloudinary() {
         Map<String, String> config = new HashMap<>();
-        config.put("cloud_name", "dwerfxy6q");
-        config.put("api_key", "329666129371878");
-        config.put("api_secret", "28EPExo0h-tN_Udktm1OhcBNaWY");
+        config.put("cloud_name", "your-cloud-name");
+        config.put("api_key", "your-api-key");
+        config.put("api_secret", "your-api-secret-key");
         return new Cloudinary(config);
     }
     @Bean
@@ -65,7 +65,7 @@ public class SpringConfig {
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
         dataSource.setJdbcUrl("jdbc:mysql://localhost:3306/LMS_SYS");
         dataSource.setUsername("root");
-        dataSource.setPassword("yan_kee4");
+        dataSource.setPassword("root");
         return dataSource;
     }
     @Bean
