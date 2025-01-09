@@ -14,7 +14,7 @@ But, honestly the code was writing using chatGPT. :)
 ## Technologies Used
 
 - Spring MVC: For building the web application.
-- JPA (Java Persistence API)**: For database operations.
+- JPA (Java Persistence API): For database operations.
 - Hibernate: As the ORM tool.
 - MySQL: As the database (can be replaced with any other relational database).
 - Maven: For dependency management.
@@ -31,6 +31,6 @@ Before you begin, ensure you have the following installed:
 
 ## Getting Started
 
-1. Clone the Repository**:
+1. Clone the Repository:
    ```bash
    git clone https://github.com/PhyoThetkhine/Online_Learning_SYS_SpringMVC_JPA.git
